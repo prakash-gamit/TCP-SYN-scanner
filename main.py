@@ -20,25 +20,24 @@ def main():
         for p in topports.topports:
             scanner.portlist.put(p)
 
-    print "Scanning started..."
+    started = time.time()
+    print "Scanning started at", time.ctime(started)
 
-    scanner.output += "%5s\tSTATE" %("PORT")
+    scanner.output += "%5s\tSTATE\n" %("PORT")
 
     threads = []
     if scanner.verbose:
-        print "creating" scanner.totalThreads, "..."
+        print "creating", scanner.totalThreads, "threads"
 
     for i in range(1, scanner.totalThreads+1):
         if scanner.verbose:
-            print "creating Thread", i, "..."
+            print "creating Thread", i
 
         t = ScannerThread.ScannerThread(scanner.portlist, i)
         t.setDaemon(True)
         t.start()
         threads.append(t)
 
-        if scanner.verbose:
-            print "created Thread", i, "..."
     # end for block
 
     scanner.portlist.join()
@@ -47,8 +46,9 @@ def main():
     for item in threads:
         item.join()
 
+    finished = time.time()
     print scanner.output
-    print "Finished scanning..."
+    print "Finished scanning in %.5f seconds at" %(finished-started), time.ctime(finished), time.tzname[0]
 
 
 if __name__ == "__main__":

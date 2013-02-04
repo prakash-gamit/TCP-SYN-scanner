@@ -15,7 +15,7 @@ class ScannerThread(threading.Thread):
 
     def run(self):
         if scanner.verbose:
-            print "started Thread", self.tid, "..."
+            print "started Thread", self.tid
 
         # ports scanned by this thread
         totalPorts = 0
@@ -33,11 +33,11 @@ class ScannerThread(threading.Thread):
                 # flags is 18 if SYN,ACK received
                 # i.e port is open
                 if response[TCP].flags == 18:
-                    scanner.output += "%5d\tOPEN" %port
+                    scanner.output += "%5d\tOPEN\n" %port
 
             totalPorts += 1
             self.portlist.task_done()
         # end while block
 
         if scanner.verbose:
-            print "Thread", self.tid, "scanned", totalPorts, "ports..."
+            print "Thread", self.tid, "scanned", totalPorts, "ports"
