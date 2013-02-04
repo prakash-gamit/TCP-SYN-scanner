@@ -7,9 +7,10 @@ from scapy.all import *
 
 
 class ScannerThread(threading.Thread):
-    def __init__(self, portlist):
+    def __init__(self, portlist, tid):
         threading.Thread.__init__(self)
         self.portlist = portlist
+        self.tid = tid
 
 
     def run(self):
