@@ -25,11 +25,21 @@ def main():
     scanner.output += "%5s\tSTATE" %("PORT")
 
     threads = []
+    if scanner.verbose:
+        print "creating" scanner.totalThreads, "..."
+
     for i in range(1, scanner.totalThreads+1):
+        if scanner.verbose:
+            print "creating Thread", i, "..."
+
         t = ScannerThread.ScannerThread(scanner.portlist, i)
         t.setDaemon(True)
         t.start()
         threads.append(t)
+
+        if scanner.verbose:
+            print "created Thread", i, "..."
+    # end for block
 
     scanner.portlist.join()
 
