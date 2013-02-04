@@ -1,5 +1,6 @@
 # module to parse command line arguments
 
+import sys
 import Queue
 import getopt
 import topports
@@ -41,5 +42,14 @@ def parseOptions(args):
             exit(1)
 
 def help():
-    return
+    print "usage:", sys.argv[0], "[options] <target ip address>"
+
+    print """OPTIONS
+    -h : show this help
+    -p : specify port numbers to scan
+         example:
+            -p 21,22,23,50-100,443
+    -t : numbers of threads to create
+    -v : be verbose
+    """
 
