@@ -21,7 +21,8 @@ def main():
             scanner.portlist.put(p)
 
     print "Scanning started..."
-    print "%5s\tSTATE" %("PORT")
+
+    scanner.output += "%5s\tSTATE" %("PORT")
 
     threads = []
     for i in range(0, scanner.totalThreads):
@@ -36,6 +37,7 @@ def main():
     for item in threads:
         item.join()
 
+    print scanner.output
     print "Finished scanning..."
 
 

@@ -15,3 +15,5 @@ verbose = False
 # list of ports to scan
 portlist = Queue.Queue()
 
+# string to store output
+output = ""

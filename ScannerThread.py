@@ -26,7 +26,7 @@ class ScannerThread(threading.Thread):
                 # flags is 18 if SYN,ACK received
                 # i.e port is open
                 if response[TCP].flags == 18:
-                    print "%5d\tOPEN" %port
+                    scanner.output += "%5d\tOPEN" %port
 
             self.portlist.task_done()
 
