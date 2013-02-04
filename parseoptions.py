@@ -10,6 +10,11 @@ import scanner
 def parseOptions(args):
     options, scanner.target = getopt.getopt(args, "hvt:p:")
 
+    # check if target is empty
+    if len(scanner.target) == 0:
+        help()
+        exit(1)
+
     for opt in options:
         if opt[0] == '-h':
             help()
